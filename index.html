@@ -285,6 +285,7 @@ function playAudio(id) {
   // 如果当前有正在播放的音频且不是点击当前播放的音频按钮
   if (currentAudio && currentAudio !== audio) {
     currentAudio.pause(); // 停止当前正在播放的音频
+    currentAudio.currentTime = 0; // 重置播放进度为0
     var currentPlayBtn = document.querySelector('[onclick="playAudio(\'' + currentAudio.id + '\')"]');
     currentPlayBtn.innerHTML = '▶️'; // 将当前播放按钮重置为播放图标
     currentPlayBtn.classList.remove('playing');
@@ -304,9 +305,21 @@ function playAudio(id) {
     playBtn.innerHTML = '▶️'; // 更改当前按钮为播放图标
     playBtn.classList.remove('playing');
     audio.pause();
-    currentAudio = null; // 清空当前正在播放的音频
+    currentAudio = null; // 清除当前正在播放的音频
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  var allAudios = document.querySelectorAll('audio');
+  allAudios.forEach(function(audio) {
+    audio.addEventListener('ended', function() {
+      var playBtn = document.querySelector('[onclick="playAudio(\'' + audio.id + '\')"]');
+      playBtn.innerHTML = '▶️'; // 将播放按钮重置为播放图标
+      playBtn.classList.remove('playing');
+      audio.currentTime = 0; // 将音频播放进度重置为0
+    });
+  });
+});
 </script>
 
 </body>

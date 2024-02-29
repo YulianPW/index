@@ -112,17 +112,31 @@
       margin: 0 auto;
       margin-top: 10px;
     }
+
+    /* 播放按钮样式 */
+    .play-btn {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 <h1>雨恋女陪殿</h1>
 
+<p class="contact-info"><b style="color: red;">速子云VPN：</b><a href="https://pi.suzii.xyz/#/register?code=woG7P9dl">自用靠谱，良心推荐，点击跳转官网使用</a></p>
 <p class="contact-info"><b>q群联系管理：</b><a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=TfuqAlQhbYmuxlym_mPH2Iv724fgvCSB&authKey=Yna2Dul7gqaVnNbdYr4iGlWIUdLVrxZsJJ087wlzxsF3DZQ1Ihnh%2B5cLYlH1a29o&noverify=0&group_code=594316606">594316606</a></p>
 <p class="contact-info"><b>电报简介下单：</b><a href="https://t.me/YuLianPw01">https://t.me/YuLianPw01</a></p>
 <p><b style="color: red;">除此外一律不要信！！</b>q群认准管理，电报频道签名唯一账号，已有被骗重点提醒！</p>
 
 <div class="highlighted-text">
-  <p><b style="color: red;">只有线上， </b><b>主营：磕炮、视频1v1！</b>价格便宜！（kp低至45r/10min 视频99r/10min），详细看下面拼团~</p>
+  <p><b style="color: red;">只有线上， </b><b>主营：磕炮、视频1v1！</b>价格便宜！（kp低至45r/10min 视频99r/10min），详细价格vx扫下面拼团查看~</p>
   <img src="pt.jpg" alt="拼团查看价格">
 </div>
 
@@ -154,19 +168,19 @@
   </thead>
   <tbody>
     <tr class="video" data-tags="视频陪">
-      <td>𝙔𝙡.小琪</td>
+      <td>𝙔𝙡.小琪 <span class="play-btn" onclick="playAudio('audio1')">▶️</span></td>
       <td><a href="https://twitter.com/lolimg67">twi</a></td>
-      <td>🚪188（送视频单10min），有各种丝袜 衣服洛丽塔/汉服/jk都有</td>
+      <td>🚪188（送视频单10min），有各种丝袜 衣服洛丽塔/汉服/jk都有 <audio id="audio1" src="audio1.mp3"></audio></td>
     </tr>
     <tr class="audio" data-tags="女喘陪">
-      <td>𝙔𝙡.乖</td>
+      <td>𝙔𝙡.乖 <span class="play-btn" onclick="playAudio('audio2')">▶️</span></td>
       <td><a href="https://twitter.com/xiaoxiao474">twi</a></td>
-      <td>🚪188（音频福利或磕20min二选一） 接磕炮有小玩具可远控，音频定制</td>
+      <td>🚪188（音频福利或磕20min二选一） 接磕炮有小玩具可远控，音频定制 <audio id="audio2" src="老板好-乖.mp3"></audio></td>
     </tr>
     <tr class="green" data-tags="绿色陪">
-      <td>𝙔𝙡.林甜</td>
+      <td>𝙔𝙡.林甜 <span class="play-btn" onclick="playAudio('audio3')">▶️</span></td>
       <td><a href="https://v.douyin.com/iN4fYmSm/">dy</a></td>
-      <td>🚪118送半小时语聊，接连麦/哄睡/王者/永劫</td>
+      <td>🚪118送半小时语聊，接连麦/哄睡/王者/永劫 <audio id="audio3" src="audio3.mp3"></audio></td>
     </tr>
   </tbody>
 </table>
@@ -201,6 +215,12 @@ function filterByKeyword() {
     });
     row.style.display = found ? "" : "none";
   });
+}
+
+// 播放音频
+function playAudio(id) {
+  var audio = document.getElementById(id);
+  audio.play();
 }
 </script>
 

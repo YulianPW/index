@@ -118,12 +118,15 @@
       display: inline-block;
       width: 20px;
       height: 20px;
-      background-color: #007bff;
-      color: #fff;
+      color: #007bff;
       text-align: center;
       line-height: 20px;
-      border-radius: 50%;
       cursor: pointer;
+    }
+
+    /* 播放时按钮样式 */
+    .playing {
+      color: #ff0000 !important;
     }
   </style>
 </head>
@@ -241,6 +244,8 @@
 </table>
 
 <script>
+var currentAudio = null; // 存储当前正在播放的音频
+
 function toggleInfo() {
   var info = document.querySelector('.info');
   info.style.display = info.style.display === 'block' ? 'none' : 'block';
@@ -275,7 +280,32 @@ function filterByKeyword() {
 // 播放音频
 function playAudio(id) {
   var audio = document.getElementById(id);
-  audio.play();
+  var playBtn = document.querySelector('[onclick="playAudio(\'' + id + '\')"]');
+  
+  // 如果当前有正在播放的音频且不是点击当前播放的音频按钮
+  if (currentAudio && currentAudio !== audio) {
+    currentAudio.pause(); // 停止当前正在播放的音频
+    var currentPlayBtn = document.querySelector('[onclick="playAudio(\'' + currentAudio.id + '\')"]');
+    currentPlayBtn.innerHTML = '▶️'; // 将当前播放按钮重置为播放图标
+    currentPlayBtn.classList.remove('playing');
+  }
+  
+  if (audio.paused) {
+    var allPlayBtns = document.querySelectorAll('.play-btn');
+    allPlayBtns.forEach(function(btn) {
+      btn.innerHTML = '▶️'; // 重置所有按钮为播放图标
+      btn.classList.remove('playing');
+    });
+    playBtn.innerHTML = '⏸️'; // 更改当前按钮为暂停图标
+    playBtn.classList.add('playing');
+    audio.play();
+    currentAudio = audio; // 更新当前正在播放的音频
+  } else {
+    playBtn.innerHTML = '▶️'; // 更改当前按钮为播放图标
+    playBtn.classList.remove('playing');
+    audio.pause();
+    currentAudio = null; // 清空当前正在播放的音频
+  }
 }
 </script>
 
